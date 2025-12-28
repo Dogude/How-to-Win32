@@ -3,8 +3,6 @@ from ctypes import Structure, WINFUNCTYPE, POINTER, create_string_buffer
 import threading
 import asyncio
 
-
-# C:\Users\karad\OneDrive\Belgeler\py\python\python.exe sdl.py
 sdl = WinDLL(r"C:\Users\karad\OneDrive\Belgeler\py\SDL3.dll")
 
 buffer = create_string_buffer(256)
