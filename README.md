@@ -1,1 +1,3 @@
-this is demos for calling api functions from several languages
+## Calling System Level Functions from scripting Languages
+These are experiments about calling low level system functions
+from Powershell, Lua, Python
