@@ -1,8 +1,6 @@
 format PE64 GUI ;DLL
 entry start
 
-data.int.upper = 0 
-
 macro print f , val {
 
         sub rsp, 256
@@ -21,8 +19,8 @@ macro print f , val {
         add rsp , 256
 }
 
-section '.bss' readable writeable
-    datas rd 4000
+;section '.bss' readable writeable
+;    datas rd 4000
 
 
 section '.data' data readable writeable
@@ -42,31 +40,31 @@ section '.text' code readable executable
         call    [ExitProcess]
 
 
-section ".edata" export readable
+;section ".edata" export readable
+;
+;  dd 0                ; Characteristics
+;  dd 0                ; TimeDateStamp
+;  dd 0                ; MajorVersion + MinorVersion (2 bytes each)
+;  dd RVA dll_name     ; Name RVA of the DLL (ASCII string)
+;  dd 1                ; Ordinal base (starts from 1)
+;  dd 1                ; Number of functions
+;  dd 1                ; Number of names
 
-  dd 0                ; Characteristics
-  dd 0                ; TimeDateStamp
-  dd 0                ; MajorVersion + MinorVersion (2 bytes each)
-  dd RVA dll_name     ; Name RVA of the DLL (ASCII string)
-  dd 1                ; Ordinal base (starts from 1)
-  dd 1                ; Number of functions
-  dd 1                ; Number of names
+;  dq RVA export_address_table    ; RVA of Export Address Table
+;  dq RVA name_pointer_table      ; RVA of Name Pointer Table
+;  dq RVA ordinal_table           ; RVA of Ordinal Table
 
-  dq RVA export_address_table    ; RVA of Export Address Table
-  dq RVA name_pointer_table      ; RVA of Name Pointer Table
-  dq RVA ordinal_table           ; RVA of Ordinal Table
+;  export_address_table:
+;    dq RVA start                 ; Address of function to export
 
-  export_address_table:
-    dq RVA start                 ; Address of function to export
+;  name_pointer_table:
+;    dq RVA func_name             ; RVA of ASCII name 'start'
 
-  name_pointer_table:
-    dq RVA func_name             ; RVA of ASCII name 'start'
+;  ordinal_table:
+;    dw 0                         ; Ordinal index for 'start' (0 since base is 1)
 
-  ordinal_table:
-    dw 0                         ; Ordinal index for 'start' (0 since base is 1)
-
-  func_name db 'start',0         ; Exported function name
-  dll_name  db 'HELLO.DLL',0 ; Name of the DLL or EXE
+;  func_name db 'start',0         ; Exported function name
+;  dll_name  db 'HELLO.DLL',0 ; Name of the DLL or EXE
 
 
 
