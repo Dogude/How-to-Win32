@@ -100,6 +100,21 @@ hwnd = user32.CreateWindowExW(0,
 
 user32.ShowWindow(hwnd,1)
 
+button_style = 0x40000000 | 0x10000000
+button_text = "Click Me!"
+button_class = "BUTTON"
+
+h_button = user32.CreateWindowExW(
+    0, button_class, button_text,
+    button_style,
+    50, 50, 100, 30,  # x, y, width, height
+    hwnd,             # Parent is your main window
+    101, # This is the Button ID (101)
+    ffi.NULL, ffi.NULL
+)
+
+
+
 msg = ffi.new("MSG *")
 while user32.GetMessageW(msg, ffi.NULL, 0, 0):
     user32.TranslateMessage(msg)
