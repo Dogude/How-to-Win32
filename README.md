@@ -1,3 +1,2 @@
-## Calling System Level Functions from scripting Languages
+## Calling System Level Functions from various Languages
 These are experiments about calling low level system functions
-from Powershell, Lua, Python
